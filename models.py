@@ -192,12 +192,12 @@ class HKT(nn.Module):
         return acoustic_params,visual_params,hcf_params,other_params
     
 
-    def forward(self, input_ids, visual, acoustic,concept_emb_idx,vad_hem, attention_mask=None, token_type_ids=None):
+    def forward(self, input_ids, visual, acoustic,hcf, attention_mask=None, token_type_ids=None):
         
         (text_output, _) = self.text_model(input_ids, attention_mask=attention_mask, token_type_ids=token_type_ids)
         (_, _, visual_output) = self.visual_model(visual)
         (_, _, acoustic_output) = self.acoustic_model(acoustic)
-        (_, _, hcf_output) = self.hcf_model(vad_hem)
+        (_, _, hcf_output) = self.hcf_model(hcf)
         
         
         text_hcf=torch.cat((text_output,hcf_output),dim=2)
