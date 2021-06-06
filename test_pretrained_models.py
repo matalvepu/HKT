@@ -43,20 +43,6 @@ parser.add_argument(
     "--model", type=str, choices=["language_only", "acoustic_only", "visual_only","hcf_only","HKT"], default="HKT",
 )
 
-#humor
-#parser.add_argument("--dataset", type=str, choices=["humor", "sarcasm"], default="humor")
-#parser.add_argument("--batch_size", type=int, default=64)
-#parser.add_argument("--max_seq_length", type=int, default=64)
-#parser.add_argument("--max_concept_length", type=int, default=5)
-#parser.add_argument("--n_layers", type=int, default=4)
-#parser.add_argument("--n_heads", type=int, default=4)
-#parser.add_argument("--cross_n_layers", type=int, default=1)
-#parser.add_argument("--cross_n_heads", type=int, default=2)
-#parser.add_argument("--fusion_dim", type=int, default=300)
-#parser.add_argument("--dropout", type=float, default=0.1293)
-#parser.add_argument("--seed", type=int, default=313)
-
-#sarcasm
 parser.add_argument("--dataset", type=str, choices=["humor", "sarcasm"], default="sarcasm")#humor=UR-FUNNY, sarcasm=MUsTARD
 parser.add_argument("--batch_size", type=int, default=16)
 parser.add_argument("--max_seq_length", type=int, default=77)
@@ -276,9 +262,9 @@ def get_appropriate_dataset(data, tokenizer, parition):
 
 def set_up_data_loader():
     if args.dataset=="humor":
-        data_file = "hkt/ur_funny.pkl"
+        data_file = "ur_funny.pkl"
     elif args.dataset=="sarcasm":
-        data_file = "hkt/mustard.pkl"
+        data_file = "mustard.pkl"
         
     with open(
         os.path.join(DATASET_LOCATION, args.dataset, data_file),
@@ -437,8 +423,6 @@ def main():
    print("loaded")
    loss_fct = BCEWithLogitsLoss()
    test_score_model(model, test_data_loader, loss_fct)
-#    print(len(test_data_loader))
-#    model=get_model()
 
 if __name__ == "__main__":
     main()

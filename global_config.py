@@ -18,5 +18,5 @@ VISUAL_DIM_ALL = 91
 ACOUSTIC_DIM_ALL = 81
 
 H_MERGE_SENT = 768
-DATASET_LOCATION = "/scratch/mhoque_lab/datasets/processed_multimodal_data/"
+DATASET_LOCATION = "./dataset/"
 SEP_TOKEN_ID = 3
